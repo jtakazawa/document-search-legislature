@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legislative Handbook - Document Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Search Bar -->
+    <header class="search-bar">
+        <div class="logo">
+            <h1>Legislative Handbook</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" id="global-search" placeholder="Search bills, hearings, committees..." aria-label="Global search">
+            <button id="search-btn" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="search-preview" id="search-preview"></div>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Scrollable Nav -->
+        <nav class="left-nav" aria-label="Document navigation">
+            <div class="nav-header">
+                <h2>Documents</h2>
+                <div class="nav-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="bills">Bills</button>
+                    <button class="filter-btn" data-filter="hearings">Hearings</button>
+                    <button class="filter-btn" data-filter="committees">Committees</button>
+                </div>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <!-- Bills -->
+                <li class="nav-item" data-type="bills" data-id="hb-1234">
+                    <span class="item-badge bill">HB</span>
+                    <div class="item-content">
+                        <span class="item-title">HB 1234 - Education Funding Act</span>
+                        <span class="item-meta">Introduced: Jan 15, 2024</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="bills" data-id="sb-567">
+                    <span class="item-badge bill">SB</span>
+                    <div class="item-content">
+                        <span class="item-title">SB 567 - Healthcare Access Reform</span>
+                        <span class="item-meta">Introduced: Feb 3, 2024</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="bills" data-id="hb-890">
+                    <span class="item-badge bill">HB</span>
+                    <div class="item-content">
+                        <span class="item-title">HB 890 - Infrastructure Investment</span>
+                        <span class="item-meta">Introduced: Feb 20, 2024</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="bills" data-id="sb-123">
+                    <span class="item-badge bill">SB</span>
+                    <div class="item-content">
+                        <span class="item-title">SB 123 - Environmental Protection</span>
+                        <span class="item-meta">Introduced: Mar 5, 2024</span>
+                    </div>
+                </li>
+                <!-- Hearings -->
+                <li class="nav-item" data-type="hearings" data-id="hearing-1">
+                    <span class="item-badge hearing">HR</span>
+                    <div class="item-content">
+                        <span class="item-title">Budget Committee Hearing - Q1 Review</span>
+                        <span class="item-meta">Date: Mar 15, 2024</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="hearings" data-id="hearing-2">
+                    <span class="item-badge hearing">HR</span>
+                    <div class="item-content">
+                        <span class="item-title">Education Oversight Hearing</span>
+                        <span class="item-meta">Date: Mar 22, 2024</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="hearings" data-id="hearing-3">
+                    <span class="item-badge hearing">HR</span>
+                    <div class="item-content">
+                        <span class="item-title">Transportation Subcommittee Hearing</span>
+                        <span class="item-meta">Date: Apr 5, 2024</span>
+                    </div>
+                </li>
+                <!-- Committees -->
+                <li class="nav-item" data-type="committees" data-id="committee-1">
+                    <span class="item-badge committee">CM</span>
+                    <div class="item-content">
+                        <span class="item-title">Committee on Appropriations</span>
+                        <span class="item-meta">Members: 15 | Active Bills: 8</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="committees" data-id="committee-2">
+                    <span class="item-badge committee">CM</span>
+                    <div class="item-content">
+                        <span class="item-title">Committee on Education</span>
+                        <span class="item-meta">Members: 12 | Active Bills: 5</span>
+                    </div>
+                </li>
+                <li class="nav-item" data-type="committees" data-id="committee-3">
+                    <span class="item-badge committee">CM</span>
+                    <div class="item-content">
+                        <span class="item-title">Committee on Health & Human Services</span>
+                        <span class="item-meta">Members: 14 | Active Bills: 7</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Right Content Pane -->
+        <main class="content-pane" id="content-pane">
+            <div class="content-placeholder" id="content-placeholder">
+                <div class="placeholder-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <h2>Select a document to view</h2>
+                <p>Choose a bill, hearing, or committee from the navigation panel to view its details.</p>
+            </div>
+
+            <!-- Bill Content Template -->
+            <article class="document-content bill-content" id="bill-content" style="display: none;">
+                <header class="document-header">
+                    <div class="document-number" id="bill-number"></div>
+                    <h1 class="document-title" id="bill-title"></h1>
+                    <div class="document-status">
+                        <span class="status-badge" id="bill-status"></span>
+                        <span class="document-date" id="bill-date"></span>
+                    </div>
+                </header>
+
+                <section class="document-section">
+                    <h2>Bill Text</h2>
+                    <div class="rich-text" id="bill-text"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Official Response</h2>
+                    <div class="response-content" id="bill-response"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Staff Notes</h2>
+                    <div class="notes-content" id="bill-notes"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Financial Impact</h2>
+                    <div class="table-container">
+                        <table class="data-table" id="bill-financial-table">
+                            <thead>
+                                <tr>
+                                    <th>Fiscal Year</th>
+                                    <th>General Fund</th>
+                                    <th>Special Funds</th>
+                                    <th>Federal Funds</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bill-financial-data"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Voting Record</h2>
+                    <div class="table-container">
+                        <table class="data-table" id="bill-voting-table">
+                            <thead>
+                                <tr>
+                                    <th>Chamber</th>
+                                    <th>Vote Date</th>
+                                    <th>Yeas</th>
+                                    <th>Nays</th>
+                                    <th>Abstain</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bill-voting-data"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Hearing Content Template -->
+            <article class="document-content hearing-content" id="hearing-content" style="display: none;">
+                <header class="document-header">
+                    <div class="document-number" id="hearing-number"></div>
+                    <h1 class="document-title" id="hearing-title"></h1>
+                    <div class="document-status">
+                        <span class="status-badge" id="hearing-status"></span>
+                        <span class="document-date" id="hearing-date"></span>
+                    </div>
+                </header>
+
+                <section class="document-section">
+                    <h2>Hearing Summary</h2>
+                    <div class="rich-text" id="hearing-summary"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Questions Raised</h2>
+                    <div class="questions-list" id="hearing-questions"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Witness Testimony</h2>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Witness Name</th>
+                                    <th>Organization</th>
+                                    <th>Position</th>
+                                    <th>Testimony Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hearing-witnesses"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Staff Notes</h2>
+                    <div class="notes-content" id="hearing-notes"></div>
+                </section>
+            </article>
+
+            <!-- Committee Content Template -->
+            <article class="document-content committee-content" id="committee-content" style="display: none;">
+                <header class="document-header">
+                    <div class="document-number" id="committee-code"></div>
+                    <h1 class="document-title" id="committee-title"></h1>
+                    <div class="document-status">
+                        <span class="status-badge" id="committee-status"></span>
+                    </div>
+                </header>
+
+                <section class="document-section">
+                    <h2>Committee Overview</h2>
+                    <div class="rich-text" id="committee-overview"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Jurisdiction</h2>
+                    <div class="jurisdiction-content" id="committee-jurisdiction"></div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Committee Members</h2>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Party</th>
+                                    <th>District</th>
+                                    <th>Role</th>
+                                    <th>Years on Committee</th>
+                                </tr>
+                            </thead>
+                            <tbody id="committee-members"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Active Legislation</h2>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Bill Number</th>
+                                    <th>Title</th>
+                                    <th>Sponsor</th>
+                                    <th>Status</th>
+                                    <th>Last Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="committee-legislation"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="document-section">
+                    <h2>Staff Notes</h2>
+                    <div class="notes-content" id="committee-notes"></div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
